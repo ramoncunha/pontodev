@@ -1,0 +1,14 @@
+# Gemini / Antigravity agent files
+.agents/
+skills-lock.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

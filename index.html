@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramon Cunha — Software Engineer</title>
+    <meta name="description" content="Ramon Cunha is a Software Engineer with 6+ years of experience in Java, Spring Boot, and Cloud Architecture (AWS). Currently at NinjaOne. Builder of SaaS products.">
+    <meta name="keywords" content="Ramon Cunha, Software Engineer, Java, Spring Boot, AWS, NinjaOne, ClickSorteio, FitReplay">
+    <meta name="author" content="Ramon Cunha">
+    <meta property="og:title" content="Ramon Cunha — Software Engineer">
+    <meta property="og:description" content="Software Engineer with 6+ years of experience. Java, Spring Boot.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Satoshi"', '"DM Sans"', 'system-ui', 'sans-serif'],
+                        body: ['"General Sans"', '"DM Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        surface: {
+                            900: '#0c0a14',
+                            800: '#13111d',
+                            700: '#1c1929',
+                            600: '#252236',
+                        },
+                        accent: {
+                            warm: '#e8a44a',
+                            copper: '#c97d3e',
+                            glow: '#f0c274',
+                        },
+                        muted: {
+                            400: '#8b879e',
+                            300: '#a9a5b8',
+                            200: '#ccc8d9',
+                        },
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in': 'fadeIn 0.6s ease forwards',
+                        'slide-in': 'slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(24px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateX(-16px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            font-size: 18px;
+            background-color: #0c0a14;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Geometric background pattern */
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232, 164, 74, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(100, 80, 160, 0.05) 0%, transparent 60%);
+        }
+
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 1;
+        }
+
+        /* Grain overlay */
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.35;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        /* Card glassmorphism */
+        .card-glass {
+            background: linear-gradient(
+                170deg,
+                rgba(28, 25, 41, 0.92) 0%,
+                rgba(19, 17, 29, 0.96) 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+
+
+
+        /* Pill / tag style */
+        .tech-pill {
+            background: rgba(232, 164, 74, 0.08);
+            border: 1px solid rgba(232, 164, 74, 0.15);
+            color: #e8a44a;
+            transition: all 0.3s ease;
+        }
+
+        .tech-pill:hover {
+            background: rgba(232, 164, 74, 0.16);
+            border-color: rgba(232, 164, 74, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(232, 164, 74, 0.1);
+        }
+
+        /* Project card */
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(232, 164, 74, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Social icon */
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #a9a5b8;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: rgba(232, 164, 74, 0.12);
+            border-color: rgba(232, 164, 74, 0.25);
+            color: #e8a44a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(232, 164, 74, 0.12);
+        }
+
+        /* Section divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+        }
+
+        /* Staggered animation delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        /* Label styling */
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #e8a44a;
+            font-weight: 600;
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            background: linear-gradient(135deg, rgba(232, 164, 74, 0.15), rgba(232, 164, 74, 0.06));
+            border: 1px solid rgba(232, 164, 74, 0.2);
+            color: #f0c274;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: linear-gradient(135deg, rgba(232, 164, 74, 0.25), rgba(232, 164, 74, 0.12));
+            border-color: rgba(232, 164, 74, 0.35);
+            box-shadow: 0 0 24px rgba(232, 164, 74, 0.12);
+            transform: translateY(-1px);
+        }
+
+        /* Status indicator */
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        /* Language toggle */
+        .lang-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            background: transparent;
+            border: none;
+            border-radius: 9999px;
+            padding: 4px;
+        }
+
+        .lang-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.15rem;
+            transition: all 0.25s ease;
+            opacity: 0.45;
+        }
+
+        .lang-btn:hover {
+            opacity: 0.75;
+        }
+
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.08);
+            opacity: 1;
+            box-shadow: 0 0 12px rgba(232, 164, 74, 0.1);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 md:p-8">
+
+    <!-- Background layers -->
+    <div class="bg-pattern"></div>
+    <div class="grain"></div>
+
+    <!-- Main card container -->
+    <main id="main-card" class="relative z-10 w-full max-w-[520px] mx-auto">
+
+        <!-- Card -->
+        <div class="card-glass rounded-3xl shadow-2xl shadow-black/40 overflow-hidden">
+
+            <!-- Inner padding -->
+            <div class="p-6 md:p-9 space-y-7 relative">
+
+                <!-- Language toggle -->
+                <div class="lang-toggle" id="lang-toggle">
+                    <button class="lang-btn active" data-lang="en" aria-label="English" id="btn-en">🇺🇸</button>
+                    <button class="lang-btn" data-lang="pt" aria-label="Português" id="btn-pt">🇧🇷</button>
+                </div>
+
+                <!-- HEADER: Profile + Name -->
+                <header class="flex items-center gap-5 opacity-0 animate-fade-up" id="header-section">
+                    <!-- Profile Image -->
+                    <div class="w-[88px] h-[88px] md:w-[100px] md:h-[100px] rounded-full overflow-hidden bg-surface-700 flex-shrink-0">
+                        <img
+                            src="assets/profile.png"
+                            alt="Ramon Cunha — Software Engineer"
+                            class="w-full h-full object-cover"
+                            loading="eager"
+                        >
+                    </div>
+                    <!-- Name & Title -->
+                    <div class="min-w-0">
+                        <h1 class="text-[28px] md:text-3xl font-bold text-white tracking-tight leading-tight" style="font-family: 'Playfair Display', serif;">
+                            Ramon Cunha
+                        </h1>
+                        <p class="text-base md:text-lg text-muted-400 mt-1.5 leading-snug">
+                            <span data-i18n="subtitle">Software Engineer</span><br>
+                            <span class="text-muted-300" data-i18n="subtitle2">Back-end Development</span>
+                        </p>
+                    </div>
+                </header>
+
+                <!-- Status badge -->
+                <div class="opacity-0 animate-fade-up delay-100 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+                    <span class="text-base animate-float inline-block">🚀</span>
+                    <span class="text-base text-muted-300 font-medium" data-i18n="status">Always <span class="text-white font-semibold">building something incredible</span></span>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- ABOUT ME -->
+                <section class="opacity-0 animate-fade-up delay-200" id="about-section">
+                    <p class="section-label mb-3" data-i18n="aboutLabel">About</p>
+                    <p class="text-base md:text-[17px] text-muted-300 leading-relaxed" data-i18n="aboutText">
+                        Engineer with <span class="text-white font-medium">6+ years</span> building high-scale financial systems in the banking and fintech industry. Transitioned to the <span class="text-white font-medium">international market</span> to tackle distributed infrastructure and product-driven challenges. I'm also a runner, and a maker building my own SaaS projects on the side.
+                    </p>
+                </section>
+
+                <div class="divider"></div>
+
+                <!-- TECH STACK -->
+                <section class="opacity-0 animate-fade-up delay-300" id="stack-section">
+                    <p class="section-label mb-3" data-i18n="stackLabel">Stack</p>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">Java</span>
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">Kotlin</span>
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">Spring Boot</span>
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">Micronaut</span>
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">AWS</span>
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">PostgreSQL</span>
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">Kafka</span>
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">Kubernetes</span>
+                        <span class="tech-pill text-base font-medium px-4 py-2 rounded-lg">Docker</span>
+                    </div>
+                </section>
+
+                <div class="divider"></div>
+
+                <!-- PROJECTS -->
+                <section class="opacity-0 animate-fade-up delay-400" id="projects-section">
+                    <p class="section-label mb-3" data-i18n="projectsLabel">Projects</p>
+                    <div class="space-y-3">
+
+                        <!-- ClickSorteio -->
+                        <a href="https://clicksorteio.com.br" target="_blank" rel="noopener noreferrer" class="project-card rounded-xl p-5 block group" id="project-clicksorteio">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-violet-500/20 to-violet-600/10 border border-violet-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-shuffle text-violet-400 text-lg"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <div class="flex items-center gap-2">
+                                        <h3 class="text-lg font-semibold text-white">ClickSorteio</h3>
+                                        <span class="text-sm text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded font-medium">Live</span>
+                                    </div>
+                                    <p class="text-base text-muted-400 mt-1.5 leading-relaxed" data-i18n="clicksorteioDesc">
+                                        A Secret Santa platform making gift exchange organization effortless and fun.
+                                    </p>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-muted-400 group-hover:text-accent-warm transition-colors mt-1.5 flex-shrink-0"></i>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+                <div class="divider"></div>
+
+                <!-- FOOTER: Social icons + CTA -->
+                <footer class="opacity-0 animate-fade-up delay-500" id="footer-section">
+                    <div class="flex items-center justify-between">
+                        <!-- Social Icons -->
+                        <div class="flex items-center gap-3">
+                            <a href="https://linkedin.com/in/ramoncunha" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn" id="social-linkedin">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/ramoncunha" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub" id="social-github">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+
+                        <!-- CTA -->
+                        <a href="mailto:contact@ramoncunha.dev" class="cta-btn flex items-center gap-2.5 px-6 py-3 rounded-full text-base font-medium" id="cta-contact">
+                            <i class="fa-solid fa-paper-plane text-sm"></i>
+                            <span data-i18n="cta">Get in touch</span>
+                        </a>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+
+        <!-- Bottom watermark -->
+        <p class="text-center text-[10px] text-muted-400/40 mt-5 opacity-0 animate-fade-in delay-800" data-i18n="watermark">
+            Built with ☕ and a keyboard
+        </p>
+    </main>
+
+    <!-- Intersection Observer for scroll animations -->
+    <script>
+        // Smooth reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -20px 0px'
+        });
+
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('[class*="animate-fade"]').forEach(el => {
+            el.addEventListener('animationend', () => {
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+    <script src="locales/en.js"></script>
+    <script src="locales/pt.js"></script>
+    <script src="js/i18n.js"></script>
+
+</body>
+</html>
