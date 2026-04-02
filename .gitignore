@@ -12,3 +12,7 @@ Thumbs.db
 *~
 .vscode/
 .idea/
+
+# Build folders for Vercel / Node
+deploy_out/
+node_modules/
