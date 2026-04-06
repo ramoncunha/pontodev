@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import styles from './App.module.css';
-import { initialGifts, Gift } from './data/gifts';
-import { GiftCard } from './components/GiftCard';
-import { ReserveModal } from './components/ReserveModal';
+'use client';
 
-function App() {
+import { useState } from 'react';
+import styles from './page.module.css';
+import { initialGifts, Gift } from '../data/gifts';
+import { GiftCard } from '../components/GiftCard';
+import { ReserveModal } from '../components/ReserveModal';
+
+export default function Home() {
   const [gifts] = useState<Gift[]>(initialGifts);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
 
@@ -49,5 +51,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
