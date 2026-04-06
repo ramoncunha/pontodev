@@ -1,0 +1,8 @@
+{
+  "name": "ramoncunha.dev",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p deploy_out && cp -R assets js locales index.html deploy_out/ && cd luisa && npm install && npm run build && cp -R out ../deploy_out/luisa"
+  }
+}
