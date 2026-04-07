@@ -102,3 +102,27 @@
   color: var(--color-text-muted);
   font-weight: 300;
 }
+
+.reservedCard {
+  opacity: 0.6;
+  pointer-events: none;
+  filter: grayscale(0.2);
+}
+
+.reservedOverlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+  z-index: 10;
+}
+
+.reservedTag {
+  letter-spacing: 0.5px;
+}
