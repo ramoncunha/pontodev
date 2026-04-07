@@ -1,8 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  basePath: '/luisa',
-  output: 'export',
+  // Config limpa para rodar apenas o Chá de Bebê.
 };
 
 export default nextConfig;

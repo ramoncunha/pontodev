@@ -16,3 +16,6 @@ Thumbs.db
 # Build folders for Vercel / Node
 deploy_out/
 node_modules/
+.vercel
+.env*.local
+.next/
