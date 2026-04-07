@@ -117,3 +117,46 @@
   background-color: var(--color-primary-hover);
   transform: translateY(-2px);
 }
+
+.choiceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.primaryButton {
+  background-color: var(--color-primary);
+  color: var(--color-text-main);
+  border: none;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.primaryButton:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-accent);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.secondaryButton:hover {
+  background-color: var(--color-bg);
+  transform: translateY(-2px);
+}

@@ -8,6 +8,7 @@ interface ReserveModalProps {
 }
 
 export const ReserveModal: React.FC<ReserveModalProps> = ({ gift, onClose }) => {
+  const [step, setStep] = useState<'choice' | 'form'>('choice');
   const [giverName, setGiverName] = useState('');
 
   if (!gift) return null;
@@ -24,6 +25,14 @@ export const ReserveModal: React.FC<ReserveModalProps> = ({ gift, onClose }) => 
     onClose();
   };
 
+  const handleOnlyView = () => {
+    window.open(gift.storeUrl, '_blank');
+  };
+
+  const handleProceedToGift = () => {
+    setStep('form');
+  };
+
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div 
@@ -34,29 +43,43 @@ export const ReserveModal: React.FC<ReserveModalProps> = ({ gift, onClose }) => 
         
         <div className={styles.header}>
           <h2 className={styles.title}>Presentear</h2>
-          <p className={styles.subtitle}>Você está oferecendo: <strong>{gift.name}</strong></p>
+          <p className={styles.subtitle}>
+            {step === 'choice' ? 'Você selecionou: ' : 'Você está oferecendo: '}
+            <strong>{gift.name}</strong>
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.inputGroup}>
-            <label htmlFor="giverName" className={styles.label}>
-              Seu nome (só a mamãe vai ver)
-            </label>
-            <input 
-              id="giverName"
-              type="text" 
-              value={giverName}
-              onChange={(e) => setGiverName(e.target.value)}
-              placeholder="Ex: Titia Ana"
-              className={styles.input}
-              required
-            />
+        {step === 'choice' ? (
+          <div className={styles.choiceContainer}>
+            <button className={styles.secondaryButton} onClick={handleOnlyView}>
+              Quero apenas ver o produto na loja
+            </button>
+            <button className={styles.primaryButton} onClick={handleProceedToGift}>
+              Já decidi e vou presentear!
+            </button>
           </div>
-          
-          <button type="submit" className={styles.submitButton}>
-            Confirmar e Ir para a Loja
-          </button>
-        </form>
+        ) : (
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.inputGroup}>
+              <label htmlFor="giverName" className={styles.label}>
+                Seu nome (só a mamãe vai ver)
+              </label>
+              <input 
+                id="giverName"
+                type="text" 
+                value={giverName}
+                onChange={(e) => setGiverName(e.target.value)}
+                placeholder="Ex: Titia Ana"
+                className={styles.input}
+                required
+              />
+            </div>
+            
+            <button type="submit" className={styles.submitButton}>
+              Confirmar e ir para a loja
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
